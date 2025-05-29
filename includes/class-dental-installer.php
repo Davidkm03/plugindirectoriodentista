@@ -39,12 +39,19 @@ class Dental_Installer {
     /**
      * Create required database tables
      *
-     * @return void
+     * @return bool True on success, false on failure
      */
     private function create_required_tables() {
-        // Create database tables
+        // Create database tables using migration system
         $db = new Dental_Database();
-        $db->create_tables();
+        $success = $db->create_tables();
+        
+        if ( ! $success ) {
+            error_log( 'Dental Directory System - Failed to create database tables' );
+            return false;
+        }
+        
+        return true;
     }
 
     /**
