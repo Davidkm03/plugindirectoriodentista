@@ -22,6 +22,7 @@ A comprehensive WordPress plugin for creating a dental directory system with cha
 - WordPress REST API endpoints for frontend-backend communication
 - Comprehensive permissions system with role-specific capabilities
 - Email verification system for new user registration
+- Database migration system for schema versioning and updates
 
 ## User Management Features
 
@@ -44,6 +45,35 @@ A comprehensive WordPress plugin for creating a dental directory system with cha
 - WordPress 5.8 or higher
 - PHP 7.4 or higher
 - Elementor (recommended for full functionality)
+
+## Database Schema
+
+The plugin uses a custom database schema with optimized tables for performance and functionality:
+
+### Core Tables
+
+- **wp_dental_profiles** - Comprehensive dentist profile information including specialties, location, services
+- **wp_dental_chat_messages** - Individual messages between dentists and patients 
+- **wp_dental_conversations** - Groups messages into conversations between a dentist and patient
+- **wp_dental_subscriptions** - Manages dentist subscription plans and status
+- **wp_dental_reviews** - Stores patient reviews of dentists with ratings and responses
+
+### Supporting Tables
+
+- **wp_dental_message_counters** - Critical business logic for tracking free tier message limits
+- **wp_dental_subscription_payments** - Payment history for subscription transactions
+- **wp_dental_review_votes** - Tracks helpful/unhelpful votes on reviews
+- **wp_dental_favorites** - Records which dentists a patient has favorited
+
+### Database Features
+
+- **Migration System** - Versioned database schema with safe upgrades and rollbacks
+- **Transaction Safety** - All schema changes happen within database transactions
+- **Optimized Indexes** - Carefully designed indexes for query performance
+- **Foreign Keys** - Maintains data integrity across related tables
+- **Expandable Design** - Schema can be extended with minimal impact to existing data
+
+For the complete schema documentation, see `/includes/database/schema-documentation.md`
 
 ## Development Status
 
