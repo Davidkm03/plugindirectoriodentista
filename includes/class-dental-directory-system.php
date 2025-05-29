@@ -99,7 +99,9 @@ class Dental_Directory_System {
         require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-roles.php';
         require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-permissions.php';
         require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-manager.php';
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-existing-users.php';
         $this->components['user'] = new Dental_User_Manager();
+        $this->components['existing_users'] = new Dental_Existing_Users();
         
         // Only load admin components in admin area
         if ( is_admin() ) {
