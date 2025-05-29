@@ -33,7 +33,11 @@ A comprehensive WordPress plugin for creating a dental directory system with cha
 ### User Registration
 - Custom registration forms for dentists and patients
 - Auto-assignment of free subscription to new dentist accounts
-- Email verification system for account activation
+- Email verification system for account activation with secure tokens
+- Resend verification option for improved user experience
+- Advanced password strength validation
+- Robust form validation with real-time feedback
+- Secure AJAX processing with nonce verification
 
 ### Existing WordPress Users
 - Simple role selection process for existing users

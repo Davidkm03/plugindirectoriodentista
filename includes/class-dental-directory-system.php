@@ -109,8 +109,24 @@ class Dental_Directory_System {
             $this->components['admin'] = new Dental_Admin();
         }
         
-        // Frontend components
+        // Frontend components - Load in correct order (dependency chain)
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/class-dental-template-loader.php';
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/class-dental-router.php';
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/class-dental-auth.php';
         require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'public/class-dental-public.php';
+        
+        // Initialize template loader first
+        $template_loader = new Dental_Template_Loader();
+        $this->components['template_loader'] = $template_loader;
+        
+        // Initialize router with template loader
+        $router = new Dental_Router( $template_loader );
+        $this->components['router'] = $router;
+        
+        // Initialize authentication system
+        $this->components['auth'] = new Dental_Auth();
+        
+        // Initialize public facing functionality with required dependencies
         $this->components['public'] = new Dental_Public();
         
         // Check if Elementor is active and load Elementor integration
@@ -133,11 +149,12 @@ class Dental_Directory_System {
     }
 
     /**
-     * Register plugin hooks and filters
-     *
-     * @return void
+     * Register hooks and actions
      */
-    private function register_hooks() {
+    private function define_hooks() {
+        // Load public facing functionality
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_assets' ) );
+        
         // Register activation and deactivation hooks
         add_action( 'init', array( $this, 'register_post_types' ) );
         add_action( 'init', array( $this, 'register_taxonomies' ) );
