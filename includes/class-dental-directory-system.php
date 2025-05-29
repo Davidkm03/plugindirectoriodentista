@@ -100,6 +100,10 @@ class Dental_Directory_System {
         require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-permissions.php';
         require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-manager.php';
         require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-existing-users.php';
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-email-verification.php';
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-profile-manager.php';
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-media-handler.php';
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-profile-router.php';
         $this->components['user'] = new Dental_User_Manager();
         $this->components['existing_users'] = new Dental_Existing_Users();
         
