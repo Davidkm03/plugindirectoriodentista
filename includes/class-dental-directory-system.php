@@ -95,6 +95,12 @@ class Dental_Directory_System {
         // Core components
         $this->components['database'] = new Dental_Database();
         
+        // Initialize user management (load this first as other components depend on it)
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-roles.php';
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-permissions.php';
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-manager.php';
+        $this->components['user'] = new Dental_User_Manager();
+        
         // Only load admin components in admin area
         if ( is_admin() ) {
             require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'admin/class-dental-admin.php';
@@ -111,17 +117,17 @@ class Dental_Directory_System {
             $this->components['elementor'] = new Dental_Elementor();
         }
         
-        // Initialize user management
-        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-manager.php';
-        $this->components['user'] = new Dental_User_Manager();
-        
         // Initialize chat system
-        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/chat/class-dental-chat-manager.php';
-        $this->components['chat'] = new Dental_Chat_Manager();
+        if (file_exists(DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/chat/class-dental-chat-manager.php')) {
+            require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/chat/class-dental-chat-manager.php';
+            $this->components['chat'] = new Dental_Chat_Manager();
+        }
         
         // Initialize subscription system
-        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/subscription/class-dental-subscription-manager.php';
-        $this->components['subscription'] = new Dental_Subscription_Manager();
+        if (file_exists(DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/subscription/class-dental-subscription-manager.php')) {
+            require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/subscription/class-dental-subscription-manager.php';
+            $this->components['subscription'] = new Dental_Subscription_Manager();
+        }
     }
 
     /**

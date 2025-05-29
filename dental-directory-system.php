@@ -39,6 +39,9 @@ define( 'DENTAL_DIRECTORY_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
  * @return void
  */
 function dental_activate_plugin() {
+    // Include required files for activation
+    require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-roles.php';
+    
     // Create necessary database tables
     dental_create_required_tables();
     
@@ -86,6 +89,7 @@ add_action( 'plugins_loaded', 'dental_load_textdomain' );
 require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/class-dental-autoloader.php';
 require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/class-dental-directory-system.php';
 require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/database/class-dental-database.php';
+require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/dental-user-functions.php';
 
 /**
  * Initialize the plugin

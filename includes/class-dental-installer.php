@@ -199,8 +199,13 @@ function dental_create_required_tables() {
  * @return void
  */
 function dental_create_user_roles() {
-    // This function is intentionally left empty
-    // since the Dental_Installer::create_user_roles() will be called during activation
+    // Load the user roles class and create roles
+    if ( ! class_exists( 'Dental_User_Roles' ) ) {
+        require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-roles.php';
+    }
+    
+    $user_roles = new Dental_User_Roles();
+    $user_roles->create_roles();
 }
 
 /**
