@@ -91,6 +91,50 @@ require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/class-dental-directory-syst
 require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/database/class-dental-database.php';
 require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/dental-user-functions.php';
 
+// Load fallback functions (solo se definirán si no existen aún)
+if (file_exists(DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/dental-user-functions-fallback.php')) {
+    require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/dental-user-functions-fallback.php';
+}
+
+// Verificar que las funciones críticas existen, si no, definirlas
+if (!function_exists('dental_is_dentist')) {
+    function dental_is_dentist($user_id = null) {
+        if (null === $user_id) {
+            $user_id = get_current_user_id();
+        }
+        
+        if (!$user_id) {
+            return false;
+        }
+        
+        $user = get_userdata($user_id);
+        if (!$user) {
+            return false;
+        }
+        
+        return in_array('dentist', (array) $user->roles, true);
+    }
+}
+
+if (!function_exists('dental_is_patient')) {
+    function dental_is_patient($user_id = null) {
+        if (null === $user_id) {
+            $user_id = get_current_user_id();
+        }
+        
+        if (!$user_id) {
+            return false;
+        }
+        
+        $user = get_userdata($user_id);
+        if (!$user) {
+            return false;
+        }
+        
+        return in_array('patient', (array) $user->roles, true);
+    }
+}
+
 /**
  * Initialize the plugin
  */

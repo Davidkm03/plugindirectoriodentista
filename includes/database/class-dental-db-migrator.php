@@ -59,6 +59,31 @@ class Dental_DB_Migrator {
             return true;
         }
 
+        // Run migrations in order for version 1.0.0
+        if ( version_compare( $this->current_schema_version, '1.0.0', '<' ) ) {
+            // Create tables
+            require_once $this->migrations_dir . 'create_chat_tables.php';
+            require_once $this->migrations_dir . 'create_favorites_table.php';
+            require_once $this->migrations_dir . 'create_subscriptions_table.php';
+            require_once $this->migrations_dir . 'create_notifications_table.php';
+            require_once $this->migrations_dir . 'create_message_counters_table.php';
+            
+            $chat_result = dental_create_chat_tables();
+            $favorites_result = dental_create_favorites_table();
+            $subscriptions_result = dental_create_subscriptions_table();
+            $notifications_result = dental_create_notifications_table();
+            $counters_result = dental_create_message_counters_table();
+            
+            if ( $chat_result && $favorites_result && $subscriptions_result && $notifications_result && $counters_result ) {
+                // Update schema version
+                update_option( 'dental_db_version', $this->latest_schema_version );
+                return true;
+            }
+            
+            return false;
+        }
+
+        // For future migrations, we'll use the migration system below
         // Get all migrations in ascending version order
         $migrations = $this->get_migrations();
         $success = true;

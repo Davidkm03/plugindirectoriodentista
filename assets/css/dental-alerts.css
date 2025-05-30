@@ -1,0 +1,368 @@
+/**
+ * Dental Directory - Alerts and Blocks Styling
+ * 
+ * Styles for message limit alerts, warnings, and blocking elements
+ */
+
+/* Limit Warning Banner */
+.dental-limit-warning-banner {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+    color: #856404;
+    margin: 15px 0;
+    padding: 0;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.limit-warning-content {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.limit-warning-content i.fa-exclamation-triangle {
+    font-size: 24px;
+    color: #ffc107;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.limit-warning-message {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.limit-warning-message strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+
+.limit-warning-actions {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.dental-button-warning {
+    background-color: #ffc107;
+    color: #856404;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+.dental-button-warning:hover {
+    background-color: #e0a800;
+    color: #856404;
+    text-decoration: none;
+}
+
+.dental-dismiss-warning {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.dental-dismiss-warning:hover {
+    color: #666;
+}
+
+/* Limit Block Message */
+.dental-limit-block {
+    background-color: #f8d7da;
+    border-left: 4px solid #dc3545;
+    color: #721c24;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.dental-limit-block .icon-container {
+    margin-bottom: 15px;
+}
+
+.dental-limit-block .fa-lock {
+    font-size: 36px;
+    color: #dc3545;
+}
+
+.dental-limit-block h4 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.dental-limit-block p {
+    margin-bottom: 15px;
+}
+
+.dental-button-premium {
+    background-color: #9c27b0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+.dental-button-premium:hover {
+    background-color: #7b1fa2;
+    color: white;
+    text-decoration: none;
+}
+
+/* Upgrade Modal */
+.dental-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s;
+}
+
+.dental-modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 0;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s;
+}
+
+.dental-modal-header {
+    padding: 15px 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dental-modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.dental-modal-close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.dental-modal-close:hover {
+    color: #333;
+}
+
+.dental-modal-body {
+    padding: 20px;
+    color: #333;
+}
+
+.upgrade-icon {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.upgrade-icon .fa-crown {
+    font-size: 48px;
+    color: #ffc107;
+}
+
+.dental-modal-body h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+}
+
+.premium-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.premium-benefits li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.premium-benefits li i {
+    color: #4CAF50;
+    margin-right: 10px;
+    font-size: 16px;
+    margin-top: 3px;
+}
+
+.upgrade-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Message Input Block */
+.dental-chat-input-blocked {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #e9ecef;
+}
+
+.dental-chat-input-blocked .icon-container {
+    margin-bottom: 10px;
+}
+
+.dental-chat-input-blocked .fa-lock {
+    font-size: 24px;
+    color: #dc3545;
+}
+
+.dental-chat-input-blocked p {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #721c24;
+}
+
+/* Animation for modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Message limit progress bar */
+.message-limit-progress-container {
+    margin: 10px 0;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.message-limit-progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.progress-good {
+    background-color: #4CAF50;
+}
+
+.progress-warning {
+    background-color: #ffc107;
+}
+
+.progress-danger {
+    background-color: #dc3545;
+}
+
+.message-limit-count {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Message blocked UI */
+.message-blocked-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(248, 215, 218, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 4px;
+}
+
+.message-blocked-content {
+    text-align: center;
+    padding: 20px;
+    max-width: 80%;
+}
+
+.message-blocked-content i {
+    font-size: 32px;
+    color: #dc3545;
+    margin-bottom: 15px;
+}
+
+.message-blocked-content h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #721c24;
+}
+
+.message-blocked-content p {
+    margin-bottom: 15px;
+    color: #721c24;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+    .limit-warning-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .limit-warning-content i.fa-exclamation-triangle {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .limit-warning-actions {
+        margin-left: 0;
+        margin-top: 15px;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .dental-modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}

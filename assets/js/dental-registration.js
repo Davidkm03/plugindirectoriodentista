@@ -1,10 +1,53 @@
 /**
  * Registration JavaScript
  * 
- * Handles all registration form functionality
+ * Handles all registration form functionality including multi-step forms,
+ * real-time validations, and email verification UX
  */
 (function($) {
     'use strict';
+    
+    // Variables for field validation
+    const validationMessages = {
+        username: {
+            checking: dental_vars.texts.username_checking || 'Checking username availability...',
+            available: dental_vars.texts.username_available || 'Username is available',
+            notAvailable: dental_vars.texts.username_not_available || 'Username is already taken',
+            invalid: dental_vars.texts.username_invalid || 'Username must be at least 4 characters and contain only letters, numbers, and underscores',
+            required: dental_vars.texts.username_required || 'Username is required'
+        },
+        email: {
+            checking: dental_vars.texts.email_checking || 'Checking email...',
+            available: dental_vars.texts.email_available || 'Email is valid',
+            notAvailable: dental_vars.texts.email_not_available || 'Email is already registered',
+            invalid: dental_vars.texts.email_invalid || 'Please enter a valid email address',
+            required: dental_vars.texts.email_required || 'Email is required'
+        },
+        password: {
+            weak: dental_vars.texts.password_weak || 'Password is too weak',
+            medium: dental_vars.texts.password_medium || 'Password strength: medium',
+            strong: dental_vars.texts.password_strong || 'Password strength: strong',
+            veryStrong: dental_vars.texts.password_very_strong || 'Password strength: very strong',
+            required: dental_vars.texts.password_required || 'Password is required'
+        },
+        password_confirm: {
+            match: dental_vars.texts.password_match || 'Passwords match',
+            notMatch: dental_vars.texts.password_not_match || 'Passwords do not match',
+            required: dental_vars.texts.password_confirm_required || 'Please confirm your password'
+        }
+    };
+    
+    // Field validation delays
+    const validationDelays = {
+        username: 500,
+        email: 500
+    };
+    
+    // Validation timeouts
+    let validationTimeouts = {};
+    
+    // Validation status
+    let fieldValidStatus = {};
 
     // Dentist registration form handler
     function initDentistRegistration() {

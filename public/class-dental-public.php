@@ -93,10 +93,17 @@ class Dental_Public {
             true
         );
         
-        // Register registration scripts
+        // Register registration styles and scripts
+        wp_register_style(
+            'dental-registration-styles',
+            DENTAL_DIRECTORY_PLUGIN_URL . 'assets/css/dental-registration.css',
+            array(),
+            DENTAL_DIRECTORY_VERSION
+        );
+        
         wp_register_script(
             'dental-registration-scripts',
-            DENTAL_DIRECTORY_PLUGIN_URL . 'assets/js/dental-registration.js',
+            DENTAL_DIRECTORY_PLUGIN_URL . 'assets/js/dental-registration-enhanced.js',
             array( 'jquery' ),
             DENTAL_DIRECTORY_VERSION,
             true
@@ -145,6 +152,7 @@ class Dental_Public {
                 );
                 
                 if ( in_array( $post->ID, $registration_pages ) ) {
+                    wp_enqueue_style( 'dental-registration-styles' );
                     wp_enqueue_script( 'dental-registration-scripts' );
                     wp_localize_script( 'dental-registration-scripts', 'dental_vars', $localization );
                 }

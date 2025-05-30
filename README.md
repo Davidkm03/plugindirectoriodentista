@@ -79,6 +79,88 @@ The plugin uses a custom database schema with optimized tables for performance a
 
 For the complete schema documentation, see `/includes/database/schema-documentation.md`
 
+## Integración con WooCommerce
+
+El plugin se integra con WooCommerce para gestionar las suscripciones premium. A continuación se detallan los pasos para configurar los productos de suscripción necesarios.
+
+### Requisitos previos
+
+- WooCommerce instalado y activado
+- Plugin WooCommerce Subscriptions instalado y activado
+
+### Configuración de productos de suscripción
+
+#### 1. Suscripción Premium Mensual
+
+1. **Crear nuevo producto en WooCommerce**:
+   - Ve a WooCommerce > Productos > Añadir nuevo
+
+2. **Información básica**:
+   - **Nombre**: "Suscripción Premium Mensual para Dentistas"
+   - **Descripción**: "Mensajes ilimitados y perfil destacado por un mes. Renovación automática mensual."
+   - **Precio regular**: Establece el precio mensual (por ejemplo, $19.99)
+
+3. **Tipo de producto**:
+   - En la sección "Datos del producto", selecciona "Suscripción" en el menú desplegable
+
+4. **Configuración de suscripción**:
+   - **Periodo de suscripción**: Selecciona "Mes"
+   - **Intervalo de suscripción**: 1
+   - **Duración de la suscripción**: Selecciona "Cobrar indefinidamente hasta cancelación"
+
+5. **Configuración clave para la integración**:
+   - **SKU**: `dental-premium-monthly` (**OBLIGATORIO** - El plugin busca este SKU específico)
+   - En "Meta personalizada", añade `_dental_subscription_type` con valor `monthly`
+
+6. Haz clic en "Publicar" para guardar el producto
+
+#### 2. Suscripción Premium Anual
+
+1. **Crear nuevo producto en WooCommerce**:
+   - Ve a WooCommerce > Productos > Añadir nuevo
+
+2. **Información básica**:
+   - **Nombre**: "Suscripción Premium Anual para Dentistas"
+   - **Descripción**: "Mensajes ilimitados y perfil destacado por un año completo. Ahorra con respecto al plan mensual."
+   - **Precio regular**: Establece el precio anual (por ejemplo, $199.99)
+
+3. **Tipo de producto**:
+   - En la sección "Datos del producto", selecciona "Suscripción" en el menú desplegable
+
+4. **Configuración de suscripción**:
+   - **Periodo de suscripción**: Selecciona "Año"
+   - **Intervalo de suscripción**: 1
+   - **Duración de la suscripción**: Selecciona "Cobrar indefinidamente hasta cancelación"
+
+5. **Configuración clave para la integración**:
+   - **SKU**: `dental-premium-yearly` (**OBLIGATORIO** - El plugin busca este SKU específico)
+   - En "Meta personalizada", añade `_dental_subscription_type` con valor `yearly`
+
+6. Haz clic en "Publicar" para guardar el producto
+
+### Flujo de suscripción
+
+1. **Plan gratuito**: Los dentistas comienzan con un plan gratuito que permite 5 mensajes/mes
+2. **Límite alcanzado**: Cuando un dentista alcanza el límite, se le muestra un botón para actualizar
+3. **Proceso de actualización**:
+   - El plugin redirige al usuario al checkout de WooCommerce con el producto seleccionado
+   - WooCommerce gestiona el proceso de pago y creación de suscripción
+   - Al completarse el pago, el plugin actualiza automáticamente el estado del usuario a premium
+
+### Configuración alternativa (mediante IDs)
+
+Si prefieres no usar los SKUs predeterminados, puedes especificar los IDs de los productos directamente:
+
+1. Navega a Dental Directory > Configuración > Suscripciones
+2. Introduce los IDs de tus productos de suscripción
+3. Guarda la configuración
+
+### Solución de problemas
+
+- Si las suscripciones no funcionan correctamente, verifica que los SKUs están configurados exactamente como `dental-premium-monthly` y `dental-premium-yearly`
+- Asegúrate de que WooCommerce Subscriptions está activado y configurado correctamente
+- Verifica que los productos sean de tipo "Suscripción" y no "Simple" u otro tipo
+
 ## Development Status
 
 This plugin is currently in active development.

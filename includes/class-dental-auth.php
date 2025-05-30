@@ -30,6 +30,12 @@ class Dental_Auth {
         add_action( 'wp_ajax_nopriv_dental_recover_password', array( $this, 'ajax_recover_password' ) );
         add_action( 'wp_ajax_nopriv_dental_reset_password', array( $this, 'ajax_reset_password' ) );
         
+        // Field validation handlers
+        add_action( 'wp_ajax_nopriv_dental_check_username', array( $this, 'ajax_check_username' ) );
+        add_action( 'wp_ajax_nopriv_dental_check_email', array( $this, 'ajax_check_email' ) );
+        add_action( 'wp_ajax_dental_check_username', array( $this, 'ajax_check_username' ) );
+        add_action( 'wp_ajax_dental_check_email', array( $this, 'ajax_check_email' ) );
+        
         // Logout handler (for both logged in and not logged in users)
         add_action( 'wp_ajax_dental_logout', array( $this, 'ajax_logout' ) );
         add_action( 'wp_ajax_nopriv_dental_logout', array( $this, 'ajax_logout' ) );
