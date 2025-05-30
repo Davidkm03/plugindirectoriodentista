@@ -34,6 +34,60 @@ define( 'DENTAL_DIRECTORY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'DENTAL_DIRECTORY_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
+ * Definir funciones críticas directamente en el archivo principal
+ * para garantizar su disponibilidad en todo momento
+ */
+if ( ! function_exists( 'dental_is_dentist' ) ) {
+    /**
+     * Verificar si un usuario es dentista
+     *
+     * @param int|null $user_id ID de usuario opcional, por defecto el usuario actual
+     * @return bool True si el usuario es dentista, false en caso contrario
+     */
+    function dental_is_dentist( $user_id = null ) {
+        if ( null === $user_id ) {
+            $user_id = get_current_user_id();
+        }
+        
+        if ( ! $user_id ) {
+            return false;
+        }
+        
+        $user = get_userdata( $user_id );
+        if ( ! $user ) {
+            return false;
+        }
+        
+        return in_array( 'dentist', (array) $user->roles, true );
+    }
+}
+
+if ( ! function_exists( 'dental_is_patient' ) ) {
+    /**
+     * Verificar si un usuario es paciente
+     *
+     * @param int|null $user_id ID de usuario opcional, por defecto el usuario actual
+     * @return bool True si el usuario es paciente, false en caso contrario
+     */
+    function dental_is_patient( $user_id = null ) {
+        if ( null === $user_id ) {
+            $user_id = get_current_user_id();
+        }
+        
+        if ( ! $user_id ) {
+            return false;
+        }
+        
+        $user = get_userdata( $user_id );
+        if ( ! $user ) {
+            return false;
+        }
+        
+        return in_array( 'patient', (array) $user->roles, true );
+    }
+}
+
+/**
  * Plugin activation hook
  *
  * @return void
