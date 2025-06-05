@@ -94,6 +94,7 @@ if ( ! function_exists( 'dental_is_patient' ) ) {
  */
 function dental_activate_plugin() {
     // Include required files for activation
+    require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/class-dental-installer.php';
     require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-roles.php';
     
     // Create necessary database tables
