@@ -23,17 +23,24 @@ class Dental_Installer {
      * @return void
      */
     public function install() {
+        error_log( 'Dental Installer: installation started' );
         // Create database tables
         $this->create_required_tables();
-        
+        error_log( 'Dental Installer: tables created' );
+
         // Create user roles
         $this->create_user_roles();
-        
+        error_log( 'Dental Installer: roles created' );
+
         // Create required pages
         $this->create_required_pages();
-        
+        error_log( 'Dental Installer: pages created' );
+
         // Schedule cron jobs
         $this->schedule_cron_jobs();
+        error_log( 'Dental Installer: cron jobs scheduled' );
+
+        error_log( 'Dental Installer: installation finished' );
     }
 
     /**
@@ -45,12 +52,14 @@ class Dental_Installer {
         // Create database tables using migration system
         $db = new Dental_Database();
         $success = $db->create_tables();
-        
+
         if ( ! $success ) {
             error_log( 'Dental Directory System - Failed to create database tables' );
             return false;
         }
-        
+
+        error_log( 'Dental Installer: database tables successfully created' );
+
         return true;
     }
 
@@ -92,6 +101,8 @@ class Dental_Installer {
                 'dental_write_reviews'   => true,
             )
         );
+
+        error_log( 'Dental Installer: user roles registered' );
     }
 
     /**
@@ -173,6 +184,8 @@ class Dental_Installer {
                 update_option( 'dental_page_' . str_replace( '-', '_', $slug ), $existing_page->ID );
             }
         }
+
+        error_log( 'Dental Installer: required pages ensured' );
     }
 
     /**
@@ -187,6 +200,8 @@ class Dental_Installer {
             $next_month_start = strtotime( 'first day of next month midnight' );
             wp_schedule_event( $next_month_start, 'monthly', 'dental_reset_monthly_counters' );
         }
+
+        error_log( 'Dental Installer: cron job scheduled' );
     }
 }
 

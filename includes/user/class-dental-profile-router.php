@@ -105,10 +105,12 @@ class Dental_Profile_Router {
         // Make sure user is logged in for all these pages
         if ( ! is_user_logged_in() ) {
             // Redirect to login page with redirect parameter
-            $redirect_url = add_query_arg( 
-                'redirect_to', 
-                urlencode( $_SERVER['REQUEST_URI'] ), 
-                home_url( '/login/' ) 
+            $login_page_id = get_option( 'dental_page_login' );
+            $login_url = $login_page_id ? get_permalink( $login_page_id ) : wp_login_url();
+            $redirect_url = add_query_arg(
+                'redirect_to',
+                urlencode( $_SERVER['REQUEST_URI'] ),
+                $login_url
             );
             wp_redirect( $redirect_url );
             exit;

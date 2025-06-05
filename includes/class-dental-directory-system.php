@@ -232,9 +232,7 @@ class Dental_Directory_System {
     /**
      * Register hooks and actions
      */
-    private function define_hooks() {
-        // Load public facing functionality
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_assets' ) );
+    private function register_hooks() {
         
         // Register activation and deactivation hooks
         add_action( 'init', array( $this, 'register_post_types' ) );

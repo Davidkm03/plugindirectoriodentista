@@ -44,7 +44,7 @@ class Dental_Assets {
         wp_register_style(
             'dental-chat',
             DENTAL_DIRECTORY_PLUGIN_URL . 'assets/css/dental-chat.css',
-            array('dental-frontend'),
+            array(),
             DENTAL_DIRECTORY_VERSION
         );
 
@@ -75,6 +75,14 @@ class Dental_Assets {
         wp_register_script(
             'dental-chat-modal',
             DENTAL_DIRECTORY_PLUGIN_URL . 'assets/js/dental-chat-modal.js',
+            array( 'jquery', 'wp-util' ),
+            DENTAL_DIRECTORY_VERSION,
+            true
+        );
+
+        wp_register_script(
+            'dental-chat',
+            DENTAL_DIRECTORY_PLUGIN_URL . 'assets/js/dental-chat.js',
             array( 'jquery', 'wp-util' ),
             DENTAL_DIRECTORY_VERSION,
             true
