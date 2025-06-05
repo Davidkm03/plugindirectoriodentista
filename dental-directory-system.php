@@ -94,22 +94,30 @@ if ( ! function_exists( 'dental_is_patient' ) ) {
  */
 function dental_activate_plugin() {
     // Include required files for activation
+    error_log( 'Dental Directory System activation started: ' . date( 'Y-m-d H:i:s' ) );
+    require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/class-dental-installer.php';
     require_once DENTAL_DIRECTORY_PLUGIN_DIR . 'includes/user/class-dental-user-roles.php';
-    
+
     // Create necessary database tables
     dental_create_required_tables();
-    
+    error_log( 'Dental Directory System activation: database tables created' );
+
     // Create custom user roles
     dental_create_user_roles();
-    
+    error_log( 'Dental Directory System activation: user roles created' );
+
     // Create necessary pages
     dental_create_required_pages();
-    
+    error_log( 'Dental Directory System activation: required pages created' );
+
     // Set plugin version
     update_option( 'dental_directory_version', DENTAL_DIRECTORY_VERSION );
-    
+    error_log( 'Dental Directory System activation: version stored' );
+
     // Clear rewrite rules
     flush_rewrite_rules();
+
+    error_log( 'Dental Directory System activation completed: ' . date( 'Y-m-d H:i:s' ) );
 }
 register_activation_hook( __FILE__, 'dental_activate_plugin' );
 
