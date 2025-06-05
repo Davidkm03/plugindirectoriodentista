@@ -56,6 +56,8 @@ class Dental_Message_Limits {
         
         // Register cron for monthly reset
         add_action( 'dental_monthly_message_reset', array( $this, 'reset_monthly_counters' ) );
+        // Legacy hook support from installer
+        add_action( 'dental_reset_monthly_counters', array( $this, 'reset_monthly_counters' ) );
         
         // Schedule monthly reset if not already scheduled
         if ( ! wp_next_scheduled( 'dental_monthly_message_reset' ) ) {
